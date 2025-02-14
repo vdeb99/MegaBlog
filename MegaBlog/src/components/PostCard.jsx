@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import service from "../../Appwrite/Config";
 
 export default function PostCard({ post }) {
-    if (!post) return null; // Prevents rendering if post is null/undefined
-
+    if (!post) return null;
     return (
         <Link to={`/post/${post.$id}`}>
             <div className="w-full bg-gray-100 rounded-xl p-4">
