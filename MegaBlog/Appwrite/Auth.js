@@ -13,10 +13,10 @@ import {Client,Account,ID} from "appwrite";
         try{
             const userAccount=await this.account.create(ID.unique(),email,password,name)
             if(userAccount){
-                return this.login({email,password});
+                return await this.login({email,password});
             }
             else{
-                throw new Error("Account not created"); 
+                return userAccount;
             }
 
         }
@@ -26,7 +26,7 @@ import {Client,Account,ID} from "appwrite";
     }
     async login({email,password}){
         try{
-            return await this.account.createEmailSession(email,password);
+            return await this.account.createEmailPasswordSession(email,password);
         }
         catch(error){
             throw error;
@@ -34,21 +34,24 @@ import {Client,Account,ID} from "appwrite";
     }
     async getUser(){
         try{
-            return this.account.get()
+            return await this.account.get()
         }
         catch(error){
-            throw error
+            console.log("Appwrite serive :: getUser :: error", error);
         }
         return null;
     }
-    async logout(){
-        try{
-            await this.account.deleteSessions()
-        }
-        catch(error){
+    async logout() {
+        try {
+            await this.account.deleteSession("current");
+            return { success: true };
+        } catch (error) {
+            console.error("Error logging out:", error);
             throw error;
         }
     }
+    
+    
 
  }
  const authService=new AuthService();
