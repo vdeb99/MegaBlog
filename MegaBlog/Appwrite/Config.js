@@ -12,13 +12,18 @@ export class Service{
         this.bucket=new Storage(this.client);
     }
     async createPost({title,slug,content,featuredImage,status,userId}){
-        return await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,slug,{
-            title,
-            content,
-            featuredImage,
-            status,
-            userId  
-        })
+        try{
+            return await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,slug,{
+                title,
+                content,
+                featuredImage,
+                status,
+                userId,
+            })
+        }
+        catch(error){
+            console.log("Appwrite service :: createPost :: error", error);
+        }
     }
     async updatePost(slug,{title,content,featuredImage,status}){
         try{
@@ -36,7 +41,7 @@ export class Service{
             throw error;
         }
     }
-    async delete(slug){
+    async deletePost(slug){
         try{
             await this.databases.deleteDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,slug) 
             return true;
@@ -52,7 +57,8 @@ export class Service{
             return await this.databases.getDocument(conf.appwriteDatabaseId,conf.appwriteCollectionId,slug)
         }
         catch(error){
-            throw error;
+            console.log("Appwrite service :: getPost :: error", error);
+            return false
         }
     }
     async getPosts(queries=[Query.equal("status","active")]){
@@ -90,16 +96,11 @@ export class Service{
             throw error;
         }
     }
-    getfilePriveiw(fileId){
-        try{
-            return this.bucket.getFilePreview(
-                conf.appwriteBucketId,
-                fileId
-            )
-        }
-        catch(error){
-            throw error;
-        }
+    getFilePreview(fileId){
+        return this.bucket.getFilePreview(
+            conf.appwriteBucketId,
+            fileId
+        )
     }
 }
 const service=new Service();
