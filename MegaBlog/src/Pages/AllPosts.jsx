@@ -11,7 +11,7 @@ export default function AllPosts() {
         if (posts && posts.documents) {
             setPosts(posts.documents);
         } else {
-            setPosts([]); // Ensure it's always an array
+            setPosts([]);
         }
     });
 }, []);
@@ -23,14 +23,14 @@ export default function AllPosts() {
             <div className="flex flex-wrap">
               {posts.length > 0 ? (
                   posts
-                      .filter((post) => post && post.$id) // Ensure each post is valid
+                      .filter((post) => post && post.$id) 
                       .map((post) => (
                           <div key={post.$id} className="p-2 w-1/4">
                               <PostCard post={post} />
                           </div>
                       ))
               ) : (
-                  <p>No posts available.</p> // Show fallback message
+                  <p>No posts available.</p> 
               )}
           </div>
 
