@@ -25,17 +25,17 @@ function App() {
   return !loading ? (
     <div className="flex flex-col min-h-screen">
       
-      {/* Sticky Header */}
+      
       <header className="sticky top-0 z-50 shadow-md">
         <Header />
       </header>
 
-      {/* Main Content (pushes footer down) */}
+      
       <main className="flex-1 bg-gray-500">
         <Outlet />
       </main>
 
-      {/* Footer at bottom */}
+      
       <Footer />
     </div>
   ) : null;
