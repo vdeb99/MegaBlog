@@ -20,7 +20,7 @@ export default function AllPosts() {
   return (
     <div className="py-8">
       <Container>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-6">
               {posts.length > 0 ? (
                   posts
                       .filter((post) => post && post.$id) 

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import service from "../../Appwrite/Config";
 import { Container, PostCard } from "../components";
 import { useSelector } from "react-redux";
-export default function Home() {
+export default function Profile() {
     const [posts, setPosts] = useState([]);
     const userData=useSelector((state)=>state.auth.userData)
+    
     const userId=userData ? userData.$id : null
+    
     useEffect(() => {
         service.getPosts([])  
             .then((posts) => {
@@ -26,8 +28,8 @@ export default function Home() {
                 <Container>
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
-                            <h1 className="text-2xl font-bold hover:text-gray-500">
-                                Login to read posts
+                            <h1 className="text-2xl  text-gray-100">
+                                Post section is empty. Please add a post.
                             </h1>
                         </div>
                     </div>

@@ -31,7 +31,7 @@ function App() {
       </header>
 
       
-      <main className="flex-1 bg-gray-500">
+      <main className="flex-1 bg-zinc-600">
         <Outlet />
       </main>
 
