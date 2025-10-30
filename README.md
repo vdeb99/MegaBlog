@@ -199,23 +199,6 @@ MegaBlog/
 - Secure file uploads
 - XSS protection
 
-## Deployment
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-The optimized files will be in the `dist` directory.
-
-### Deploy Options
-
-- **Vercel** - Recommended for React apps
-- **Netlify** - Easy deployment with continuous integration
-- **GitHub Pages** - Free hosting for static sites
-- **Appwrite Functions** - Deploy backend logic
-
 ## Environment Variables
 
 Required environment variables:
@@ -254,9 +237,6 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
-
-This project is open source and available under the MIT License.
 
 ## Support
 
